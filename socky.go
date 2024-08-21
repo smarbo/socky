@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os/exec"
 	"sync"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 )
 
@@ -43,16 +43,13 @@ type Client struct {
 }
 
 func newClient(conn *websocket.Conn, manager *Manager) *Client {
-  newID, err := exec.Command("uuidgen").Output()
-  if err != nil {
-    log.Fatal(err)
-  }
+  newID := uuid.New()
 	return &Client{
 		conn,
 		manager,
 		make(chan Event),
 		"default",
-    string(newID),
+    newID.String(),
 	}
 }
 
