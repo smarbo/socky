@@ -39,6 +39,7 @@ type Client struct {
   // room is the room name of which the socket is currently connected to
 	room       string
   // id is a unique id for the client
+  // uses google UUID generator package
   id string
 }
 
