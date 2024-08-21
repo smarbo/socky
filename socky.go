@@ -66,15 +66,13 @@ func (c *Client) SendEvent(event Event) {
 
 func (c *Client) BroadcastEvent(event Event) {
   for wsclient := range c.manager.clients {
-    if wsclient.id != c.id {
-      wsclient.egress <- event;
-    }
+    wsclient.egress <- event;
   }
 } 
 
 func (c *Client) RoomcastEvent(event Event) {
   for wsclient := range c.manager.clients {
-    if wsclient.room == c.room && wsclient.id != c.id {
+    if wsclient.room == c.room {
       wsclient.egress <- event;
     }
   }
