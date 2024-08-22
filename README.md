@@ -1,3 +1,5 @@
+
+[<img src="https://github.com/user-attachments/assets/e273ed0c-240b-4498-ac75-edbaaac734c4" width="250"/>](https://github.com/user-attachments/assets/e273ed0c-240b-4498-ac75-edbaaac734c4)
 # socky.go - A simple WebSocket library for Go.
 ## Overview
 socky.go is designed to simplify WebSocket server management in Go applications. This library abstracts common WebSocket operations through a system of Events. This system is both easy to understand and work with on the backend, and also easy to integrate within the frontend. Here is a quick look at what an Event looks like:
