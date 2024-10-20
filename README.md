@@ -64,6 +64,29 @@ sc.AddEventHandler("ping", func(event socky.Event, c *socky.Client) error {
 ```
 The `sc.AddEventListener` function takes in 2 parameters, `msgType` and `handler`, where `msgType` is a string representing the message type to match when routing incoming events, and where `handler` is a function of type `EventHandler`, which takes in an event of type `Event`, and a `Client` object.
 
+In your custom event handlers, JSON data can be extracted from the `event.Payload json.rawMessage` object via the following steps:
+1. Define your struct, which will be used for extracting data.
+```go
+type RequestData struct {
+    Title   string `json:"title"`
+    Content string `json:"content"`
+    Age     int    `json:"age"`
+}
+```
+2. Then, create your `socky` event handler as shown below, where you can unmarshal the payload into an instance of your struct. This instance can then be used to access the individual fields of the JSON object.
+```go
+sc.AddEventHandler("request", func(event socky.Event, c *socky.Client) error {
+        var reqData RequestData
+        if err := json.Unmarshal(event.Payload, &reqData); err != nil {
+        return err
+    }
+    fmt.Printf("Request Title: %s\n", reqData.Title)
+    fmt.Printf("Request Content: %s\n", reqData.Content)
+    fmt.Printf("Request Age: %d\n", reqData.Age)
+    return nil
+})
+```
+
 ### Sending Events
 Socky comes with multiple ways to send Events:
 ```go
