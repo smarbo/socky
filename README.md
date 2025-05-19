@@ -13,7 +13,7 @@ type Event struct {
 Pretty much, every event contains 3 key items; a type, a payload, and who it is from.
 **Type**: The type of message which is being sent: this allows the server to route the message to its corresponding event handler.
 
-**Payload**: The meaty part of the message: this is what is actually being sent, for example: in a chat application, the payload of a message of type ```send_message``` would contain the payload as a string of the actual message sent by the user. Or, in a game, a message of type ```update_state``` would contain the payload as a JSON Object containing the player that has moved and the new coordinates of the player in something like this:
+**Payload**: The main information of the message: this is what is actually being sent, for example: in a chat application, the payload of a message of type ```send_message``` would contain the payload as a string of the actual message sent by the user. Or, in a game, a message of type ```update_state``` would contain the payload as a JSON Object containing the player that has moved and the new coordinates of the player in something like this:
 ```json
 {
 	"type": "update_state",
